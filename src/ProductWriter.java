@@ -12,30 +12,28 @@ import java.io.OutputStreamWriter;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
-public class PersonGenerator {
+public class ProductWriter {
     public static void main(String[] args) {
         // Variables
         Scanner in = new Scanner(System.in);
 
         boolean doneInput = false;
         String id = "";
-        String firstName = "";
-        String lastName = "";
-        String title = "";
-        int YOB = 0;
+        String name = "";
+        String description = "";
+        double cost;
         String rec = "";
 
         ArrayList<String> people = new ArrayList<>();
 
-        // Create a loop to input a persons data
+        // Create a loop to input a products data
         do {
-            id = SafeInput.getNonZeroLenString(in, "Enter your ID [000001]");
-            firstName = SafeInput.getNonZeroLenString(in, "Enter your first name");
-            lastName = SafeInput.getNonZeroLenString(in, "Enter your last name");
-            title = SafeInput.getNonZeroLenString(in, "Enter your title");
-            YOB = SafeInput.getRangedInt(in, "Enter your year of birth [YYYY]", 1000, 9999);
+            id = SafeInput.getNonZeroLenString(in, "Enter product ID [000001]");
+            name = SafeInput.getNonZeroLenString(in, "Enter product name");
+            description = SafeInput.getNonZeroLenString(in, "Enter product description");
+            cost = SafeInput.getRangedDouble(in, "Enter The cost", 0, 9999);
 
-            rec = id + ", " + firstName + ", " + lastName + ", " + title + ", " + YOB;
+            rec = id + ", " + name + ", " + description + ", " + cost;
             people.add(rec);
             System.out.println("You have entered: " + people.get(people.size() - 1));
 
@@ -45,7 +43,7 @@ public class PersonGenerator {
 
 
         File workingDirectory = new File(System.getProperty("user.dir"));
-        Path file = Paths.get(workingDirectory.getPath() + "\\src\\PersonTestData.txt");
+        Path file = Paths.get(workingDirectory.getPath() + "\\src\\productData.txt");
 
         try {
             // Typical java pattern of inherited classes
